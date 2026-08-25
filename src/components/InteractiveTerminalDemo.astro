@@ -19,33 +19,22 @@ const fedoraAsciiLines = [
   "ccccc;0MNc.ccc.xMMd;ccccccccccccccc;",
   "cccccc;dNMWXXXWM0:;cccccccccccccc:,",
   "cccccccc;.:odl:.;cccccccccccccc:,.",
-  "ccccccccccccccccccccccccccccc:'.",
-  ":ccccccccccccccccccccccc:;,..",
-  " ':cccccccccccccccc::;,,."
+  "ccccccccccccccccccccccccccccc:'."
 ];
 
 const fetchSpecs = [
-  { key: "OS", value: "Fedora Linux 44 (KDE Plasma Desktop Edition)" },
-  { key: "Host", value: "VivoBook_ASUSLaptop X515MA_X515MA 1.0" },
+  { key: "OS", value: "Fedora Linux 44 (KDE Plasma)" },
   { key: "Kernel", value: "Fedora 7.1.8-200.fc44.x86_64" },
   { key: "Uptime", value: "25 mins" },
   { key: "Packages", value: "Flatpak (3), RPM (2467)" },
-  { key: "Shell", value: "Bash 5.3.9" },
-  { key: "Resolution", value: "1366x768" },
-  { key: "DE", value: "KDE" },
-  { key: "WM", value: "KWin (X11)" },
+  { key: "DE", value: "KDE Plasma (X11)" },
   { key: "Terminal", value: "Konsole" },
-  { key: "CPU", value: "Intel(R) Pentium(R) Silver N5030 CPU @ 1.10GHz" },
-  { key: "GPU", value: "Intel GeminiLake [UHD Graphics 605]" },
+  { key: "CPU", value: "Intel(R) Pentium(R) Silver N5030" },
+  { key: "GPU", value: "Intel GeminiLake [UHD 605]" },
   { key: "Memory", value: "1.8GB / 3.6GB (49%)" },
-  { key: "Swap", value: "0.4GB / 3.6GB (9.9%)" },
   { key: "Disk", value: "16.8GB / 337.8GB (5%)" },
   { key: "Local IP", value: "10.126.203.85" },
-  { key: "Locale", value: "en_US" },
-  { key: "Languages", value: "Go, Java, Node, Python" },
-  { key: "Open Ports", value: "53, 631, 1716, 5355, 37295, 40957" },
-  { key: "Temperature", value: "56.0 °C" },
-  { key: "Go Version", value: "go1.26.6-X:nodwarf5" }
+  { key: "Go Version", value: "go1.26.6 (pure go)" }
 ];
 
 const networkSpecs = [
@@ -53,7 +42,6 @@ const networkSpecs = [
   { key: "Private IP", value: "10.126.203.85" },
   { key: "MAC Address", value: "12:69:18:54:f6:78" },
   { key: "I/O Counters", value: "wlo1 (Sent: 33.0 MB, Recv: 142.8 MB)" },
-  { key: "Proxy", value: "None" },
   { key: "DNS Servers", value: "127.0.0.53" },
   { key: "Ping (1.1.1.1)", value: "85.855 ms" }
 ];
@@ -63,49 +51,24 @@ const processList = [
   { pid: "1504", name: "kwin_wayland" },
   { pid: "4514", name: "chromium-browser" },
   { pid: "4686", name: "kernelview" },
-  { pid: "2904", name: "chromium-browse" },
   { pid: "3356", name: "kate" },
-  { pid: "3159", name: "chromium-browser" },
-  { pid: "2856", name: "chromium-browser" },
   { pid: "1665", name: "plasmashell" },
-  { pid: "4482", name: "node" },
-  { pid: "65", name: "kswapd0" },
-  { pid: "2909", name: "chromium-browse" },
-  { pid: "72", name: "kworker/1:1-i915" },
-  { pid: "49", name: "kcompactd0" },
-  { pid: "3040", name: "chromium-browser" },
-  { pid: "4306", name: "kworker/u17:0" },
-  { pid: "4471", name: "pnpm" },
-  { pid: "4375", name: "konsole" }
+  { pid: "4471", name: "pnpm" }
 ];
 
 const jsonRawOutput = `{
-  "OS": "Fedora Linux 44 (KDE Plasma Desktop Edition)",
-  "Host": "VivoBook_ASUSLaptop X515MA_X515MA 1.0",
-  "Kernel": "Fedora 7.1.8-200.fc44.x86_64",
+  "OS": "Fedora Linux 44 (KDE Plasma)",
+  "Kernel": "7.1.8-200.fc44.x86_64",
   "Uptime": "25 mins",
-  "Shell": "Bash 5.3.9",
-  "CPU": "Intel(R) Pentium(R) Silver N5030 CPU @ 1.10GHz",
-  "CoresThreads": "4/4",
-  "CPUSpeed": "2.79 GHz",
-  "CPUUsage": "0.0%",
+  "CPU": "Intel Pentium Silver N5030 @ 1.10GHz",
+  "CPUUsage": "0.4%",
   "GPU": "Intel GeminiLake [UHD Graphics 605]",
   "RAM": "1.8GB / 3.6GB (49%)",
   "Disk": "16.8GB / 337.8GB (5%)",
-  "Swap": "0.4GB / 3.6GB (9.9%)",
   "Hostname": "fedora",
   "IPAddress": "10.126.203.85",
-  "OpenPorts": "53, 631, 1716, 5355, 37295, 40957",
-  "Locale": "en_US",
-  "Resolution": "1366x768",
-  "WindowManager": "KWin (X11)",
-  "DE": "KDE",
-  "Terminal": "Konsole",
   "Packages": "Flatpak (3), RPM (2467)",
-  "Languages": "Go, Java, Node, Python",
-  "Go": "go1.26.6-X:nodwarf5",
-  "Virtualization": "kvm",
-  "Temperature": "56.0 °C"
+  "Go": "go1.26.6-pure"
 }`;
 
 const intelAscii = [
@@ -116,100 +79,78 @@ const intelAscii = [
   "|___|_| \\_| |_| |_____|_____|"
 ];
 
-const helpMenu = `╭────────────────────────────────────────────────────────╮
-│   KernelView Go - System Fetch & Live Dashboard        │
-│   Version: 1.3.1 (Detected: fedora)                    │
-╰────────────────────────────────────────────────────────╯
-
-USAGE:
-  kernelview [flags]
+const helpMenu = `USAGE: kernelview [flags]
 
 DISPLAY MODES:
-  -l, --live         Start real-time TUI dashboard (interactive, multi-tab)
+  -l, --live         Start real-time TUI dashboard
   -p, --process      Display static list of running processes
-  -n, --network      Display detailed static network interfaces & stats
-  -g, --gpu          Display detailed static GPU & graphics API report
-  [default]          Display system fetch (fastfetch-like distro ASCII logo & specs)
+  -n, --network      Display network interfaces & latency
+  -g, --gpu          Display GPU & graphics API report
+  [default]          Display system fetch with ASCII logo
 
-CONFIGURATION OPTIONS:
-  -f, --fast         Run system fetch in fast mode (skips slow subsystem checks)
+CONFIGURATION:
+  -f, --fast         Run fast mode (skip slow subsystem checks)
   --json             Output information as structured JSON
-  --no-color         Disable all ANSI color formatting
-
-INFO FLAGS:
-  -v, --version      Print version and build information
-  -h, --help         Print this aesthetic help menu
-
-TUI INTERACTIVE KEYS:
-  [1] Dashboard Tab   [2] Processes Tab   [3] Network Tab   [4] CPU Cores Tab   [Q] Quit
-
-EXAMPLES:
-  $ kernelview --live            # Open the live TUI dashboard
-  $ kernelview -p --json         # Fetch running processes in JSON format
-  $ kernelview -g                # Display detailed GPU and graphics API report
-  $ kernelview -f                # Fast system fetch with ASCII logo`;
+  --no-color         Disable ANSI color formatting`;
 ---
 
-<section id="demo" class="py-14 sm:py-20 lg:py-28 relative overflow-hidden">
+<section id="demo" class="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Section Header -->
-    <div class="text-center max-w-3xl mx-auto mb-7 sm:mb-10">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#00ADD8]/10 text-[#00ADD8] border border-[#00ADD8]/30 text-xs font-mono font-medium mb-3 sm:mb-4">
+    <div class="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00ADD8]/10 text-[#00ADD8] border border-[#00ADD8]/30 text-xs font-mono font-medium mb-3 shadow-glow-sm">
         <span>// INTERACTIVE CLI SANDBOX</span>
       </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
         Test command flags. <br class="hidden sm:inline" />
         <span class="text-gradient-go">Experience exact terminal output.</span>
       </h2>
-      <p class="mt-3 text-slate-400 text-sm sm:text-base lg:text-lg">
-        Click any command flag below to render the authentic, pixel-accurate output directly from the KernelView binary.
-      </p>
     </div>
 
-    <!-- Terminal Sandbox Container -->
-    <div class="max-w-5xl mx-auto">
+    <!-- Terminal Sandbox Container (Compact & Focused max-w-3xl) -->
+    <div class="max-w-3xl mx-auto">
       
       <!-- Command Button Selectors -->
-      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-6 px-1">
+      <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-5 px-1">
         <button
           type="button"
-          class="demo-cmd-btn px-3 sm:px-4 py-2 rounded-xl font-mono text-xs font-semibold bg-[#0f1420] text-cyan-300 border border-[#00ADD8] shadow-glow-sm transition-all active-demo min-h-[40px] active:scale-95"
+          class="demo-cmd-btn px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-[#0f1420] text-cyan-300 border border-[#00ADD8] shadow-glow-sm transition-all active-demo min-h-[34px] active:scale-95"
           data-output="fetch"
         >
           $ kernelview
         </button>
         <button
           type="button"
-          class="demo-cmd-btn px-3 sm:px-4 py-2 rounded-xl font-mono text-xs font-semibold bg-[#0f1420]/70 text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700 transition-all min-h-[40px] active:scale-95"
+          class="demo-cmd-btn px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-[#0f1420]/70 text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700 transition-all min-h-[34px] active:scale-95"
           data-output="json"
         >
           $ kernelview --json
         </button>
         <button
           type="button"
-          class="demo-cmd-btn px-3 sm:px-4 py-2 rounded-xl font-mono text-xs font-semibold bg-[#0f1420]/70 text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700 transition-all min-h-[40px] active:scale-95"
+          class="demo-cmd-btn px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-[#0f1420]/70 text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700 transition-all min-h-[34px] active:scale-95"
           data-output="gpu"
         >
           $ kernelview -g
         </button>
         <button
           type="button"
-          class="demo-cmd-btn px-3 sm:px-4 py-2 rounded-xl font-mono text-xs font-semibold bg-[#0f1420]/70 text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700 transition-all min-h-[40px] active:scale-95"
+          class="demo-cmd-btn px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-[#0f1420]/70 text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700 transition-all min-h-[34px] active:scale-95"
           data-output="net"
         >
           $ kernelview -n
         </button>
         <button
           type="button"
-          class="demo-cmd-btn px-3 sm:px-4 py-2 rounded-xl font-mono text-xs font-semibold bg-[#0f1420]/70 text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700 transition-all min-h-[40px] active:scale-95"
+          class="demo-cmd-btn px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-[#0f1420]/70 text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700 transition-all min-h-[34px] active:scale-95"
           data-output="proc"
         >
           $ kernelview -p
         </button>
         <button
           type="button"
-          class="demo-cmd-btn px-3 sm:px-4 py-2 rounded-xl font-mono text-xs font-semibold bg-[#0f1420]/70 text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700 transition-all min-h-[40px] active:scale-95"
+          class="demo-cmd-btn px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-[#0f1420]/70 text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700 transition-all min-h-[34px] active:scale-95"
           data-output="help"
         >
           $ kernelview --help
@@ -217,25 +158,25 @@ EXAMPLES:
       </div>
 
       <!-- Interactive Output Window -->
-      <div class="rounded-xl sm:rounded-2xl bg-[#0a0e17] border border-[#00ADD8]/40 shadow-terminal overflow-hidden">
+      <div class="rounded-xl sm:rounded-2xl bg-[#0a0e17] border border-[#00ADD8]/30 shadow-terminal overflow-hidden">
         
         <!-- Header Bar -->
-        <div class="bg-[#0f1420] px-3.5 sm:px-4 py-2.5 sm:py-3 border-b border-slate-800 flex items-center justify-between">
+        <div class="bg-[#0f1420] px-3 sm:px-4 py-2 border-b border-slate-800 flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ff5f56]"></div>
-            <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ffbd2e]"></div>
-            <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#27c93f]"></div>
-            <span class="ml-2 font-mono text-xs text-slate-400">interactive-session — bash</span>
+            <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
+            <span class="ml-1.5 font-mono text-[11px] sm:text-xs text-slate-400">interactive-session — bash</span>
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-[10px] sm:text-[11px] font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/50 flex items-center gap-1">
+            <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/50 flex items-center gap-1">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> ~42.8ms
             </span>
           </div>
         </div>
 
-        <!-- Terminal Output Body -->
-        <div class="p-3.5 sm:p-6 font-mono text-[11px] sm:text-xs md:text-sm bg-[#080c14] text-slate-200 min-h-[380px] overflow-x-auto leading-relaxed overscroll-x-contain">
+        <!-- Terminal Output Body (Compact padding & font size) -->
+        <div class="p-3.5 sm:p-5 font-mono text-[11px] sm:text-xs bg-[#080c14] text-slate-200 min-h-[290px] overflow-x-auto leading-relaxed overscroll-x-contain">
           
           <!-- Exact Fetch Output View -->
           <div id="out-fetch" class="demo-pane block">
