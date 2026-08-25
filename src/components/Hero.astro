@@ -1,0 +1,173 @@
+---
+// Hero.astro
+---
+
+<section class="relative pt-6 pb-14 sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-28 overflow-hidden">
+  <!-- Glowing Background Orbs -->
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[300px] sm:w-[650px] lg:w-[800px] h-[250px] sm:h-[300px] bg-gradient-to-tr from-[#00ADD8]/20 to-blue-600/10 rounded-full blur-[80px] sm:blur-[120px] pointer-events-none -z-10 animate-pulse-subtle" aria-hidden="true"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+    
+    <!-- Top Pill Badge -->
+    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0f1420]/90 border border-[#00ADD8]/30 shadow-glow-sm mb-5 sm:mb-8 backdrop-blur-md max-w-full">
+      <span class="flex h-2 w-2 relative flex-shrink-0">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ADD8] opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-[#00ADD8]"></span>
+      </span>
+      <span class="text-[10px] sm:text-xs font-mono font-medium text-slate-300 truncate">
+        Engineered in <span class="text-[#00ADD8] font-semibold">Pure Go</span> • Zero Subprocesses • Sub-50ms
+      </span>
+    </div>
+
+    <!-- Main Headline -->
+    <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.15] sm:leading-[1.12]">
+      Ultra-fast system telemetry, <br class="hidden sm:inline" />
+      <span class="text-gradient-go">right in your terminal</span>
+    </h1>
+
+    <!-- Subheadline -->
+    <p class="mt-4 sm:mt-6 text-sm sm:text-base md:text-xl text-slate-400 max-w-3xl mx-auto font-normal leading-relaxed px-1">
+      An ultra-fast, aesthetic system information fetcher and real-time terminal telemetry dashboard written in pure Go.
+      Zero runtime dependencies, sub-millisecond kernel metric resolution, and interactive multi-tab live TUI.
+    </p>
+
+    <!-- CTAs & Install Command -->
+    <div class="mt-7 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-md sm:max-w-xl mx-auto px-1">
+      <a
+        href="#install"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-7 sm:py-3.5 rounded-xl bg-[#00ADD8] hover:bg-[#00c7fd] text-slate-950 font-bold text-sm transition-all duration-200 shadow-glow-md hover:shadow-glow-lg active:scale-95"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+        <span>Install KernelView</span>
+      </a>
+
+      <a
+        href="https://github.com/codedbysoumyajit/KernelView-Go"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-7 sm:py-3.5 rounded-xl bg-[#0f1420]/80 hover:bg-[#151c2e] text-slate-200 border border-slate-700/80 hover:border-[#00ADD8]/60 font-semibold text-sm transition-all duration-200 backdrop-blur-md hover:shadow-glow-sm active:scale-95"
+      >
+        <svg class="w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+        </svg>
+        <span>View on GitHub</span>
+        <span class="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-cyan-400 border border-slate-700 font-mono">v1.3.0</span>
+      </a>
+    </div>
+
+    <!-- Quick Curl Install Box -->
+    <div class="mt-6 sm:mt-8 max-w-2xl mx-auto px-1">
+      <div class="relative flex items-center justify-between gap-2 sm:gap-3 px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-[#0f1420]/90 border border-slate-800 hover:border-[#00ADD8]/40 transition-colors shadow-lg backdrop-blur-md group">
+        <div class="flex items-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar text-left min-w-0 flex-1">
+          <span class="text-[#00ADD8] font-mono text-xs sm:text-sm select-none flex-shrink-0">$</span>
+          <code id="hero-install-cmd" class="font-mono text-[11px] sm:text-xs md:text-sm text-slate-300 whitespace-nowrap">
+            curl -fsSL https://raw.githubusercontent.com/codedbysoumyajit/KernelView-Go/main/install.sh | sh
+          </code>
+        </div>
+        
+        <button
+          id="hero-copy-btn"
+          data-copy="curl -fsSL https://raw.githubusercontent.com/codedbysoumyajit/KernelView-Go/main/install.sh | sh"
+          class="flex-shrink-0 px-2.5 sm:px-3 py-1.5 rounded-lg bg-slate-800/90 hover:bg-[#00ADD8]/20 border border-slate-700 hover:border-[#00ADD8]/50 text-slate-300 hover:text-cyan-300 font-mono text-xs transition-all flex items-center gap-1.5 active:scale-95"
+          title="Copy command"
+          aria-label="Copy installation command"
+        >
+          <svg class="w-3.5 h-3.5 text-[#00ADD8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+          </svg>
+          <span class="btn-text">Copy</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hero Telemetry Metric Highlights -->
+    <div class="mt-9 sm:mt-12 grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 max-w-4xl mx-auto pt-6 border-t border-slate-800/80">
+      <div class="p-3 sm:p-4 rounded-xl bg-slate-900/50 border border-slate-800/60">
+        <div class="font-mono text-xl sm:text-2xl md:text-3xl font-extrabold text-[#00ADD8]">~45ms</div>
+        <div class="text-[10px] sm:text-xs text-slate-400 mt-0.5">Fast Mode Latency (`-f`)</div>
+      </div>
+      <div class="p-3 sm:p-4 rounded-xl bg-slate-900/50 border border-slate-800/60">
+        <div class="font-mono text-xl sm:text-2xl md:text-3xl font-extrabold text-cyan-300">0</div>
+        <div class="text-[10px] sm:text-xs text-slate-400 mt-0.5">Subprocess Shell Forks</div>
+      </div>
+      <div class="p-3 sm:p-4 rounded-xl bg-slate-900/50 border border-slate-800/60">
+        <div class="font-mono text-xl sm:text-2xl md:text-3xl font-extrabold text-blue-400">&lt; 1%</div>
+        <div class="text-[10px] sm:text-xs text-slate-400 mt-0.5">Live TUI CPU Utilization</div>
+      </div>
+      <div class="p-3 sm:p-4 rounded-xl bg-slate-900/50 border border-slate-800/60">
+        <div class="font-mono text-xl sm:text-2xl md:text-3xl font-extrabold text-teal-300">100%</div>
+        <div class="text-[10px] sm:text-xs text-slate-400 mt-0.5">Pure Go / Zero-Dep</div>
+      </div>
+    </div>
+
+    <!-- Hero Terminal Preview Window -->
+    <div class="mt-9 sm:mt-14 max-w-4xl mx-auto">
+      <div class="rounded-xl sm:rounded-2xl bg-[#0f1420] border border-[#00ADD8]/30 shadow-terminal overflow-hidden text-left relative group">
+        
+        <!-- Terminal Header Bar -->
+        <div class="bg-[#0a0e17] px-3 sm:px-4 py-2.5 sm:py-3 border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ff5f56]"></div>
+            <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ffbd2e]"></div>
+            <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#27c93f]"></div>
+            <span class="ml-2 text-[11px] sm:text-xs font-mono text-slate-400 truncate max-w-[170px] sm:max-w-none">soumyajit@fedora:~ (kernelview v1.3.0)</span>
+          </div>
+          <div class="flex items-center gap-2 sm:gap-3">
+            <span class="text-[10px] sm:text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-400 border border-emerald-800/50 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> LIVE
+            </span>
+          </div>
+        </div>
+
+        <!-- Terminal Body -->
+        <div class="relative bg-[#0b101b] p-1.5 sm:p-3 overflow-hidden">
+          <img
+            src="/screenshots/kernelview-live.png"
+            alt="KernelView Go Live Dashboard Screenshot"
+            width="1345"
+            height="644"
+            class="w-full h-auto rounded-lg shadow-inner object-cover border border-slate-800/80 group-hover:border-[#00ADD8]/40 transition-colors duration-300"
+            loading="eager"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0e17] via-transparent to-transparent opacity-30 pointer-events-none"></div>
+        </div>
+
+        <!-- Terminal Footer status bar -->
+        <div class="bg-[#080c14] px-3 sm:px-4 py-2 border-t border-slate-800/80 flex flex-wrap items-center justify-between text-[10px] sm:text-[11px] font-mono text-slate-400 gap-2">
+          <div class="flex items-center gap-3 sm:gap-4 flex-wrap">
+            <span><strong class="text-[#00ADD8]">1-4</strong> Switch Tabs</span>
+            <span><strong class="text-[#00ADD8]">Q</strong> Quit</span>
+            <span><strong class="text-[#00ADD8]">R</strong> Refresh</span>
+          </div>
+          <div class="text-slate-500 hidden sm:block">
+            Bubble Tea & Lip Gloss Engine
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const heroCopyBtn = document.getElementById('hero-copy-btn');
+  if (heroCopyBtn) {
+    heroCopyBtn.addEventListener('click', async () => {
+      const text = heroCopyBtn.getAttribute('data-copy') || '';
+      try {
+        await navigator.clipboard.writeText(text);
+        const btnText = heroCopyBtn.querySelector('.btn-text');
+        if (btnText) btnText.textContent = 'Copied!';
+        if (window.showToast) window.showToast('Copied install command to clipboard!');
+        setTimeout(() => {
+          if (btnText) btnText.textContent = 'Copy';
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy', err);
+      }
+    });
+  }
+</script>

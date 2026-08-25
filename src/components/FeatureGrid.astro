@@ -1,0 +1,107 @@
+---
+// FeatureGrid.astro
+
+const features = [
+  {
+    icon: `<svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#00ADD8]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg>`,
+    title: "Distro-Branded ASCII Fetch",
+    tag: "fetch --ascii",
+    description: "High-fidelity, embedded ANSI color logos for 40+ Linux distributions, macOS Apple Silicon, Windows ConPTY, and BSD variants without runtime asset dependencies.",
+    details: ["40+ Native Distros", "24-bit TrueColor", "Dynamic Color Palettes"]
+  },
+  {
+    icon: `<svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#00ADD8]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>`,
+    title: "Real-Time TUI Dashboard",
+    tag: "kernelview -l",
+    description: "Interactive multi-tab terminal user interface rendered at silky-smooth 60 FPS with responsive CPU utilization graphs, memory allocation breakdowns, and swap buffers.",
+    details: ["60 FPS Render Loop", "Multi-Tab Navigation", "Configurable Tick Rate"]
+  },
+  {
+    icon: `<svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#00ADD8]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`,
+    title: "GPU Telemetry Engine",
+    tag: "kernelview -g",
+    description: "Direct memory-mapped hardware queries for NVIDIA NVML, AMD ROCm/amdgpu, Intel Arc/UHD, and Apple Metal unified memory architectures without fork delays.",
+    details: ["VRAM & Core Clock", "Vendor & Driver", "Zero Shell Spawns"]
+  },
+  {
+    icon: `<svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#00ADD8]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>`,
+    title: "Zero-Subprocess Architecture",
+    tag: "syscall /proc /sys",
+    description: "Eliminates shell command spawning entirely. Reads directly from `/proc`, `sysfs`, `sysctl`, and native platform syscalls for virtually instantaneous execution.",
+    details: ["0 Child Processes", "Direct Linux Sysfs", "POSIX Mach APIs"]
+  },
+  {
+    icon: `<svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#00ADD8]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>`,
+    title: "Cross-Platform Native Go",
+    tag: "GOOS=all GOARCH=all",
+    description: "Compiled into single static native binaries with zero CGO dependencies. First-class support across Linux (x86_64, ARM64, RISC-V), macOS, Windows, and BSD.",
+    details: ["Linux • macOS • Windows", "ARM64 & x86_64", "Zero CGO Linking"]
+  },
+  {
+    icon: `<svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#00ADD8]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>`,
+    title: "JSON Output & Scripting",
+    tag: "kernelview --json",
+    description: "Export structured JSON data with complete hardware, thermal, and network metrics for integration with jq, shell scripts, Prometheus exporters, and CI/CD pipelines.",
+    details: ["Schema-Validated JSON", "jq Compatible", "Silent Automation Mode"]
+  }
+];
+---
+
+<section id="features" class="py-16 sm:py-24 lg:py-28 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#00ADD8]/10 text-[#00ADD8] border border-[#00ADD8]/30 text-xs font-mono font-medium mb-3 sm:mb-4">
+        <span>// ARCHITECTURE & CAPABILITIES</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+        Engineered for speed. <br class="hidden sm:inline" />
+        <span class="text-gradient-go">Built for modern terminals.</span>
+      </h2>
+      <p class="mt-3 sm:mt-4 text-slate-400 text-sm sm:text-base lg:text-lg">
+        KernelView combines the lightweight instant feel of classical fetch utilities with the deep, real-time observability of enterprise TUI dashboards.
+      </p>
+    </div>
+
+    <!-- Feature Grid Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      {features.map((item) => (
+        <div class="glass-card glass-card-hover rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-7 flex flex-col justify-between relative group overflow-hidden">
+          <!-- Ambient Corner Glow -->
+          <div class="absolute top-0 right-0 w-28 h-28 sm:w-32 sm:h-32 bg-[#00ADD8]/5 rounded-full blur-2xl group-hover:bg-[#00ADD8]/15 transition-all duration-300 pointer-events-none"></div>
+          
+          <div>
+            <!-- Top Card Header: Icon + Monospace Tag -->
+            <div class="flex items-center justify-between mb-4 sm:mb-5">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-center group-hover:border-[#00ADD8]/60 group-hover:shadow-glow-sm transition-all duration-300">
+                <Fragment set:html={item.icon} />
+              </div>
+              <span class="font-mono text-[11px] sm:text-xs px-2 sm:px-2.5 py-1 rounded-md bg-[#0a0e17] text-slate-400 border border-slate-800/80 group-hover:text-cyan-300 group-hover:border-[#00ADD8]/30 transition-colors truncate">
+                {item.tag}
+              </span>
+            </div>
+
+            <!-- Title & Description -->
+            <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-cyan-200 transition-colors">
+              {item.title}
+            </h3>
+            <p class="mt-2.5 sm:mt-3 text-slate-400 text-xs sm:text-sm leading-relaxed">
+              {item.description}
+            </p>
+          </div>
+
+          <!-- Feature Bullets -->
+          <div class="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-slate-800/80 flex flex-wrap gap-1.5 sm:gap-2">
+            {item.details.map((badge) => (
+              <span class="text-[10px] sm:text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900/80 text-slate-400 border border-slate-800">
+                • {badge}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import Showcase from '../components/Showcase.astro';
+import Benchmarks from '../components/Benchmarks.astro';
+import InteractiveTerminalDemo from '../components/InteractiveTerminalDemo.astro';
+import Platforms from '../components/Platforms.astro';
+import InstallSection from '../components/InstallSection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="KernelView Go — Ultra-Fast System Telemetry & Live Terminal Dashboard"
+  description="Blazing-fast, zero-dependency system information CLI tool and real-time interactive terminal dashboard written in Go. Sub-50ms cold fetch, zero subprocess forks, GPU telemetry, and cross-platform native binaries."
+>
+  <div id="top"></div>
+  <Navbar />
+  <main>
+    <Hero />
+    <FeatureGrid />
+    <Showcase />
+    <Benchmarks />
+    <InteractiveTerminalDemo />
+    <Platforms />
+    <InstallSection />
+  </main>
+  <Footer />
+</Layout>

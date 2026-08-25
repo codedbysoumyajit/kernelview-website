@@ -1,0 +1,157 @@
+---
+// Navbar.astro
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-white/[0.08] bg-[#0a0e17]/90 backdrop-blur-xl transition-all">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
+    <!-- Logo & Version -->
+    <a href="#" class="flex items-center gap-2 sm:gap-2.5 group flex-shrink-0 min-h-[44px] py-1">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00ADD8]/20 to-blue-600/10 border border-[#00ADD8]/40 flex items-center justify-center shadow-glow-sm group-hover:border-[#00ADD8] transition-colors duration-200">
+        <svg class="w-4 h-4 text-[#00ADD8]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4 17 10 11 4 5"></polyline>
+          <line x1="12" y1="19" x2="20" y2="19"></line>
+        </svg>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="font-bold text-base sm:text-lg tracking-tight text-white group-hover:text-cyan-300 transition-colors">
+          Kernel<span class="text-[#00ADD8]">View</span>
+        </span>
+        <span class="text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded-full bg-[#00ADD8]/10 text-[#00ADD8] border border-[#00ADD8]/30">
+          v1.3.0
+        </span>
+      </div>
+    </a>
+
+    <!-- Nav Links (Desktop) -->
+    <nav class="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium text-slate-300">
+      <a href="#features" class="hover:text-[#00ADD8] transition-colors py-2">Features</a>
+      <a href="#showcase" class="hover:text-[#00ADD8] transition-colors py-2">Showcase</a>
+      <a href="#benchmarks" class="hover:text-[#00ADD8] transition-colors py-2">Benchmarks</a>
+      <a href="#demo" class="hover:text-[#00ADD8] transition-colors py-2">CLI Demo</a>
+      <a href="#platforms" class="hover:text-[#00ADD8] transition-colors py-2">Platforms</a>
+      <a href="#install" class="hover:text-[#00ADD8] transition-colors py-2">Install</a>
+    </nav>
+
+    <!-- Right Side CTAs -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <!-- GitHub Button (Without star text badge) -->
+      <a
+        href="https://github.com/codedbysoumyajit/KernelView-Go"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-slate-900/90 border border-slate-700 hover:border-[#00ADD8]/60 text-slate-300 hover:text-white text-xs font-mono transition-all duration-200 hover:shadow-glow-sm min-h-[36px]"
+      >
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+        </svg>
+        <span>GitHub</span>
+      </a>
+
+      <!-- Quick Install CTA -->
+      <a
+        href="#install"
+        class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-[#00ADD8] hover:bg-[#00c7fd] text-slate-950 font-bold text-xs transition-all duration-200 shadow-glow-sm hover:shadow-glow-md min-h-[36px]"
+      >
+        <span>Install</span>
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        class="lg:hidden p-2.5 text-slate-300 hover:text-white rounded-lg bg-slate-900 border border-slate-800 focus:outline-none min-h-[40px] min-w-[40px] flex items-center justify-center active:scale-95 transition-transform"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <svg id="menu-icon-bars" class="w-5 h-5 block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden lg:hidden border-b border-slate-800 bg-[#0c111c]/95 backdrop-blur-xl px-4 py-3 space-y-1 font-medium text-sm transition-all duration-200 shadow-2xl"
+  >
+    <a href="#features" class="block text-slate-200 hover:text-[#00ADD8] hover:bg-slate-900/80 px-3.5 py-2.5 rounded-lg transition-colors min-h-[40px] flex items-center">
+      Features & Architecture
+    </a>
+    <a href="#showcase" class="block text-slate-200 hover:text-[#00ADD8] hover:bg-slate-900/80 px-3.5 py-2.5 rounded-lg transition-colors min-h-[40px] flex items-center">
+      Screenshots Showcase
+    </a>
+    <a href="#benchmarks" class="block text-slate-200 hover:text-[#00ADD8] hover:bg-slate-900/80 px-3.5 py-2.5 rounded-lg transition-colors min-h-[40px] flex items-center">
+      Performance Benchmarks
+    </a>
+    <a href="#demo" class="block text-slate-200 hover:text-[#00ADD8] hover:bg-slate-900/80 px-3.5 py-2.5 rounded-lg transition-colors min-h-[40px] flex items-center">
+      Interactive CLI Sandbox
+    </a>
+    <a href="#platforms" class="block text-slate-200 hover:text-[#00ADD8] hover:bg-slate-900/80 px-3.5 py-2.5 rounded-lg transition-colors min-h-[40px] flex items-center">
+      Supported Platforms
+    </a>
+    <a href="#install" class="block text-slate-200 hover:text-[#00ADD8] hover:bg-slate-900/80 px-3.5 py-2.5 rounded-lg transition-colors min-h-[40px] flex items-center">
+      Installation Guide
+    </a>
+    <div class="pt-2 pb-1 border-t border-slate-800/80 flex items-center justify-between px-3">
+      <a
+        href="https://github.com/codedbysoumyajit/KernelView-Go"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-xs font-mono text-[#00ADD8] hover:underline flex items-center gap-1.5 py-1.5"
+      >
+        View GitHub Repository
+      </a>
+      <span class="text-[10px] font-mono text-slate-400">Go 1.21+</span>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconBars = document.getElementById('menu-icon-bars');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  if (btn && menu && iconBars && iconClose) {
+    const toggleMenu = () => {
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        iconBars.classList.add('hidden');
+        iconClose.classList.remove('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+      } else {
+        menu.classList.add('hidden');
+        iconBars.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    };
+
+    btn.addEventListener('click', toggleMenu);
+
+    menu.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        iconBars.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!btn.contains(e.target as Node) && !menu.contains(e.target as Node)) {
+        menu.classList.add('hidden');
+        iconBars.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+</script>

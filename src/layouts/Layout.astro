@@ -1,0 +1,92 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "KernelView Go — Ultra-Fast System Telemetry & Live Terminal Dashboard",
+  description = "A blazing-fast, zero-dependency system information CLI tool and real-time interactive terminal dashboard written in Go. Sub-50ms cold fetch, zero subprocess forks, GPU telemetry, and cross-platform native binaries."
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a0e17" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- OpenGraph / Social Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/screenshots/kernelview-live.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/screenshots/kernelview-live.png" />
+
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-[#0a0e17] text-slate-200 antialiased selection:bg-[#00ADD8]/30 selection:text-cyan-300 min-h-screen relative">
+    <!-- Ambient Background Lighting -->
+    <div class="fixed inset-0 pointer-events-none z-0 bg-tech-grid opacity-25" aria-hidden="true"></div>
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[320px] sm:w-[600px] lg:w-[900px] h-[350px] sm:h-[500px] bg-radial-glow pointer-events-none z-0" aria-hidden="true"></div>
+    <div class="fixed top-[40%] right-[-100px] w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] rounded-full bg-blue-600/5 blur-[80px] sm:blur-[120px] pointer-events-none z-0" aria-hidden="true"></div>
+    <div class="fixed bottom-[10%] left-[-100px] w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] rounded-full bg-[#00ADD8]/5 blur-[80px] sm:blur-[120px] pointer-events-none z-0" aria-hidden="true"></div>
+
+    <div class="relative z-10 flex flex-col min-h-screen">
+      <slot />
+    </div>
+
+    <!-- Mobile-Optimized Toast Notification -->
+    <div
+      id="copy-toast"
+      class="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 left-4 sm:left-auto z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex items-center justify-center sm:justify-start gap-2.5 bg-[#0f1420]/95 text-cyan-300 border border-[#00ADD8]/40 px-4 py-3 rounded-xl shadow-2xl backdrop-blur-xl text-xs sm:text-sm font-mono max-w-sm mx-auto sm:mx-0"
+      role="status"
+      aria-live="polite"
+    >
+      <svg class="w-4 h-4 text-[#00ADD8] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+      </svg>
+      <span id="toast-message">Copied to clipboard!</span>
+    </div>
+
+    <script>
+      // Global toast notification helper
+      declare global {
+        interface Window {
+          showToast: (message?: string) => void;
+        }
+      }
+
+      window.showToast = function (message = 'Copied to clipboard!') {
+        const toast = document.getElementById('copy-toast');
+        const toastMsg = document.getElementById('toast-message');
+        if (!toast || !toastMsg) return;
+        toastMsg.textContent = message;
+        toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+        toast.classList.add('translate-y-0', 'opacity-100');
+
+        setTimeout(() => {
+          toast.classList.remove('translate-y-0', 'opacity-100');
+          toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+        }, 2200);
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,224 @@
+---
+// Showcase.astro
+
+const tabs = [
+  {
+    id: "default-fetch",
+    label: "Default Fetch",
+    short: "1",
+    flag: "kernelview",
+    subtitle: "Distro ASCII Art + Comprehensive Hardware & OS Specs",
+    description: "Instantaneous cold fetch under 45ms. Automatically renders 24-bit ANSI distro logos, kernel version, desktop environment, memory footprint, uptime, GPU, and open network ports.",
+    image: "/screenshots/kernelview.png",
+    width: 775,
+    height: 500,
+    alt: "KernelView Default Fetch Mode with Fedora ASCII Art and System Telemetry",
+    stats: [
+      { label: "Execution Time", value: "42.8 ms" },
+      { label: "ASCII Formats", value: "ANSI / TrueColor" },
+      { label: "Memory Used", value: "6.4 MB" }
+    ]
+  },
+  {
+    id: "live-dashboard",
+    label: "Live Dashboard",
+    short: "2",
+    flag: "kernelview --live",
+    subtitle: "Real-Time Multi-Tab TUI with CPU, Memory, Disk & GPU Gauges",
+    description: "Interactive continuous telemetry console with smooth ANSI progress bars, dynamic color gradients, per-interface network meters, storage partitions, and live thermal telemetry.",
+    image: "/screenshots/kernelview-live.png",
+    width: 1345,
+    height: 644,
+    alt: "KernelView Real-Time Live TUI Dashboard",
+    stats: [
+      { label: "Refresh Rate", value: "60 FPS / 350ms Tick" },
+      { label: "TUI Framework", value: "Bubble Tea" },
+      { label: "CPU Overhead", value: "< 0.4%" }
+    ]
+  },
+  {
+    id: "cpu-cores",
+    label: "CPU Cores View",
+    short: "3",
+    flag: "kernelview --live --tab=cpu",
+    subtitle: "Per-Core Frequency & Utilization Matrix",
+    description: "Detailed per-core telemetry grid displaying instant clock speeds (MHz/GHz), turbo governor states, active load percentages, and thermal sensor readings per physical thread.",
+    image: "/screenshots/live-cpu.png",
+    width: 1348,
+    height: 636,
+    alt: "KernelView Per-Core CPU Frequency and Load Utilization Matrix",
+    stats: [
+      { label: "Core Topology", value: "Physical + SMT" },
+      { label: "Sampling Interval", value: "Real-time" },
+      { label: "Governor Detection", value: "Automatic" }
+    ]
+  }
+];
+---
+
+<section id="showcase" class="py-14 sm:py-20 lg:py-28 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-7 sm:mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#00ADD8]/10 text-[#00ADD8] border border-[#00ADD8]/30 text-xs font-mono font-medium mb-3 sm:mb-4">
+        <span>// INTERFACE SHOWCASE</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+        Precision UI. <br class="hidden sm:inline" />
+        <span class="text-gradient-go">Crafted for the Command Line.</span>
+      </h2>
+      <p class="mt-3 text-slate-400 text-sm sm:text-base lg:text-lg">
+        Switch between static ANSI summary mode, interactive live dashboard, and deep per-core telemetry.
+      </p>
+    </div>
+
+    <!-- Tab Selector Buttons -->
+    <div class="flex items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 flex-wrap px-1">
+      {tabs.map((tab, index) => (
+        <button
+          type="button"
+          class={`showcase-tab-btn px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl font-mono text-xs sm:text-sm font-medium transition-all duration-200 flex items-center gap-2 flex-shrink-0 border min-h-[40px] active:scale-95 ${
+            index === 0
+              ? 'bg-[#0f1420] text-cyan-300 border-[#00ADD8] shadow-glow-sm active-tab'
+              : 'bg-[#0f1420]/60 text-slate-400 border-slate-800 hover:text-slate-200 hover:border-slate-700'
+          }`}
+          data-tab-target={tab.id}
+        >
+          <span class="w-4 h-4 sm:w-5 sm:h-5 rounded bg-slate-900 border border-slate-700 text-[10px] sm:text-[11px] flex items-center justify-center text-[#00ADD8] font-bold">
+            {tab.short}
+          </span>
+          <span>{tab.label}</span>
+          <span class="text-xs text-slate-500 hidden md:inline">({tab.flag})</span>
+        </button>
+      ))}
+    </div>
+
+    <!-- Showcase Window Container -->
+    <div class="relative max-w-4xl mx-auto">
+      
+      {tabs.map((tab, index) => (
+        <div
+          id={tab.id}
+          class={`showcase-panel transition-all duration-300 ${
+            index === 0 ? 'block opacity-100' : 'hidden opacity-0'
+          }`}
+        >
+          <!-- Terminal Frame -->
+          <div class="rounded-xl sm:rounded-2xl bg-[#0f1420] border border-[#00ADD8]/30 shadow-terminal overflow-hidden max-w-3xl mx-auto">
+            
+            <!-- Terminal Header -->
+            <div class="bg-[#0a0e17] px-3.5 sm:px-4 py-2.5 sm:py-3 border-b border-slate-800 flex items-center justify-between">
+              <div class="flex items-center gap-2 overflow-hidden">
+                <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ff5f56] flex-shrink-0"></div>
+                <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ffbd2e] flex-shrink-0"></div>
+                <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#27c93f] flex-shrink-0"></div>
+                <div class="ml-2 font-mono text-[11px] sm:text-xs text-slate-400 flex items-center gap-1 sm:gap-2 truncate">
+                  <span class="text-cyan-400 truncate">~ $ {tab.flag}</span>
+                </div>
+              </div>
+
+              <!-- Quick Command Copy -->
+              <div class="flex items-center gap-2 flex-shrink-0">
+                <button
+                  class="copy-flag-btn px-2.5 py-1 rounded bg-slate-800/90 hover:bg-[#00ADD8]/20 text-slate-300 hover:text-cyan-300 border border-slate-700 text-xs font-mono transition-colors flex items-center gap-1.5 active:scale-95"
+                  data-copy={tab.flag}
+                  title="Copy command"
+                >
+                  <svg class="w-3 h-3 text-[#00ADD8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                  </svg>
+                  <span class="copy-flag-text">Copy</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Screenshot Viewport -->
+            <div class="bg-[#232627] relative overflow-hidden flex items-center justify-center">
+              <img
+                src={tab.image}
+                alt={tab.alt}
+                width={tab.width}
+                height={tab.height}
+                class="w-full h-auto block object-cover max-h-[460px]"
+                loading="lazy"
+              />
+            </div>
+
+            <!-- Terminal Info Bar -->
+            <div class="bg-[#0c111d] p-4 sm:p-5 border-t border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div class="w-full sm:w-auto">
+                <h4 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                  <span>{tab.subtitle}</span>
+                </h4>
+                <p class="text-xs text-slate-400 mt-1 max-w-xl leading-relaxed">
+                  {tab.description}
+                </p>
+              </div>
+
+              <!-- Stats Pill Matrix -->
+              <div class="grid grid-cols-3 gap-2 w-full sm:w-auto flex-shrink-0">
+                {tab.stats.map((s) => (
+                  <div class="p-2 sm:px-3 sm:py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 text-left">
+                    <div class="text-[9px] sm:text-[10px] text-slate-400 font-mono uppercase truncate">{s.label}</div>
+                    <div class="text-[11px] sm:text-xs font-mono font-bold text-[#00ADD8] truncate">{s.value}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Tab Switcher Handler
+  const tabButtons = document.querySelectorAll<HTMLButtonElement>('.showcase-tab-btn');
+  const panels = document.querySelectorAll<HTMLDivElement>('.showcase-panel');
+
+  tabButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-tab-target');
+
+      tabButtons.forEach((b) => {
+        b.classList.remove('bg-[#0f1420]', 'text-cyan-300', 'border-[#00ADD8]', 'shadow-glow-sm', 'active-tab');
+        b.classList.add('bg-[#0f1420]/60', 'text-slate-400', 'border-slate-800');
+      });
+      btn.classList.remove('bg-[#0f1420]/60', 'text-slate-400', 'border-slate-800');
+      btn.classList.add('bg-[#0f1420]', 'text-cyan-300', 'border-[#00ADD8]', 'shadow-glow-sm', 'active-tab');
+
+      panels.forEach((panel) => {
+        if (panel.id === targetId) {
+          panel.classList.remove('hidden');
+          setTimeout(() => panel.classList.add('opacity-100'), 20);
+        } else {
+          panel.classList.remove('opacity-100');
+          panel.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // Flag Copy Buttons
+  document.querySelectorAll<HTMLButtonElement>('.copy-flag-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const cmd = btn.getAttribute('data-copy') || '';
+      try {
+        await navigator.clipboard.writeText(cmd);
+        const textSpan = btn.querySelector('.copy-flag-text');
+        if (textSpan) textSpan.textContent = 'Copied!';
+        if (window.showToast) window.showToast(`Copied "${cmd}" to clipboard!`);
+        setTimeout(() => {
+          if (textSpan) textSpan.textContent = 'Copy';
+        }, 1500);
+      } catch (e) {
+        console.error(e);
+      }
+    });
+  });
+</script>

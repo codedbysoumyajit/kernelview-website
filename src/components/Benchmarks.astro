@@ -1,0 +1,199 @@
+---
+// Benchmarks.astro
+
+const benchmarks = [
+  {
+    metric: "Fast Fetch (`-f`)",
+    desc: "Instant cold system telemetry (hardware, CPU, memory, OS, display)",
+    kv: "~45 ms",
+    competitorA: "Fastfetch: ~58 ms",
+    competitorB: "Neofetch: ~480 ms",
+    highlight: "10.6x faster than bash fetch"
+  },
+  {
+    metric: "Full Default Fetch",
+    desc: "Complete fetch with SQLite RPM/APT package resolution & open ports",
+    kv: "~100 ms",
+    competitorA: "Fastfetch: ~120 ms",
+    competitorB: "Neofetch: ~650 ms",
+    highlight: "Zero subprocess forks"
+  },
+  {
+    metric: "GPU Telemetry (`-g`)",
+    desc: "Direct sysfs & memory-mapped GPU/iGPU driver & API queries",
+    kv: "~80 ms",
+    competitorA: "nvidia-smi: ~190 ms",
+    competitorB: "lspci query: ~240 ms",
+    highlight: "Direct sysfs probe"
+  },
+  {
+    metric: "Live TUI Loop (`-l`)",
+    desc: "Real-time interactive multi-tab dashboard with <1.0% CPU overhead",
+    kv: "350 ms Tick",
+    competitorA: "btop: 500 ms",
+    competitorB: "htop: 1000 ms",
+    highlight: "<1.0% CPU Utilization"
+  }
+];
+
+const comparisonData = [
+  {
+    feature: "Engine Language",
+    kv: "Go 1.21+ (Pure Go)",
+    fastfetch: "C (libfastfetch)",
+    neofetch: "Bash Script",
+    btop: "C++20"
+  },
+  {
+    feature: "Zero-Subprocess Architecture",
+    kv: "✓ Yes (Direct /proc & sysctl)",
+    fastfetch: "✓ Yes (C libraries)",
+    neofetch: "✗ No (~40 forks)",
+    btop: "✓ Yes"
+  },
+  {
+    feature: "Live Interactive TUI Dashboard",
+    kv: "✓ Yes (4 Tabs / 60 FPS)",
+    fastfetch: "✗ No (Static Only)",
+    neofetch: "✗ No (Static Only)",
+    btop: "✓ Yes"
+  },
+  {
+    feature: "GPU & Compute API Telemetry",
+    kv: "✓ Direct Native (-g)",
+    fastfetch: "✓ Dynamic Linked",
+    neofetch: "✗ Shell parsers",
+    btop: "✓ Optional Flag"
+  },
+  {
+    feature: "Structured JSON Output",
+    kv: "✓ Instant (--json)",
+    fastfetch: "✓ Supported",
+    neofetch: "✗ No",
+    btop: "✗ No"
+  },
+  {
+    feature: "Single Zero-Dependency Binary",
+    kv: "✓ True Static Binary",
+    fastfetch: "✗ Shared Libs",
+    neofetch: "✗ Coreutils",
+    btop: "✗ glibc/musl"
+  }
+];
+---
+
+<section id="benchmarks" class="py-16 sm:py-24 lg:py-28 relative overflow-hidden">
+  <!-- Glow Accent -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[650px] lg:w-[800px] h-[400px] bg-[#00ADD8]/5 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none -z-10"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#00ADD8]/10 text-[#00ADD8] border border-[#00ADD8]/30 text-xs font-mono font-medium mb-3 sm:mb-4">
+        <span>// PERFORMANCE BENCHMARKS</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+        Engineered with pure Go. <br class="hidden sm:inline" />
+        <span class="text-gradient-go">Benchmarked for extreme efficiency.</span>
+      </h2>
+      <p class="mt-3 sm:mt-4 text-slate-400 text-sm sm:text-base lg:text-lg">
+        Direct `/proc` and sysfs memory mapping means sub-millisecond kernel metric resolution with zero subprocess overhead.
+      </p>
+    </div>
+
+    <!-- 4 Key Metric Benchmark Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-10 sm:mb-14">
+      {benchmarks.map((b) => (
+        <div class="glass-card rounded-xl sm:rounded-2xl p-5 sm:p-6 border border-slate-800/80 hover:border-[#00ADD8]/40 transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] sm:text-[11px] font-mono text-cyan-400 font-semibold px-2 py-0.5 rounded bg-[#00ADD8]/10 border border-[#00ADD8]/20 truncate max-w-[85%]">
+                {b.highlight}
+              </span>
+              <span class="w-2 h-2 rounded-full bg-[#00ADD8] animate-pulse flex-shrink-0"></span>
+            </div>
+
+            <div class="mt-3 sm:mt-4">
+              <div class="text-2xl sm:text-3xl lg:text-4xl font-mono font-extrabold text-white group-hover:text-cyan-300 transition-colors">
+                {b.kv}
+              </div>
+              <div class="text-xs sm:text-sm font-semibold text-slate-200 mt-1">
+                {b.metric}
+              </div>
+              <div class="text-xs text-slate-400 mt-1.5 sm:mt-2 leading-relaxed">
+                {b.desc}
+              </div>
+            </div>
+          </div>
+
+          <!-- Comparison Micro-stats -->
+          <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-slate-800/80 text-[11px] font-mono text-slate-400 space-y-1">
+            <div class="flex justify-between items-center text-slate-400 truncate">
+              <span>{b.competitorA}</span>
+            </div>
+            <div class="flex justify-between items-center text-slate-500 truncate">
+              <span>{b.competitorB}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- In-Depth Comparison Table (Scroll-safe on mobile) -->
+    <div class="rounded-xl sm:rounded-2xl bg-[#0f1420]/90 border border-slate-800 shadow-terminal overflow-hidden backdrop-blur-xl">
+      <!-- Table Header Bar -->
+      <div class="px-4 sm:px-6 py-3.5 sm:py-4 bg-[#0a0e17] border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-2.5 sm:gap-3">
+          <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#00ADD8]"></div>
+          <span class="font-mono text-xs sm:text-sm font-bold text-white">Feature Matrix vs Alternatives</span>
+        </div>
+        <span class="text-[11px] sm:text-xs font-mono text-slate-400 hidden sm:inline">Linux • macOS • Windows • BSD</span>
+      </div>
+
+      <div class="overflow-x-auto no-scrollbar">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[600px]">
+          <thead>
+            <tr class="border-b border-slate-800 text-[11px] sm:text-xs font-mono text-slate-400 bg-slate-900/40">
+              <th class="py-3 sm:py-4 px-4 sm:px-6 font-semibold">Specification</th>
+              <th class="py-3 sm:py-4 px-4 sm:px-6 font-semibold text-[#00ADD8] bg-[#00ADD8]/5 border-x border-[#00ADD8]/20">
+                KernelView Go
+              </th>
+              <th class="py-3 sm:py-4 px-4 sm:px-6 font-semibold text-slate-300">Fastfetch</th>
+              <th class="py-3 sm:py-4 px-4 sm:px-6 font-semibold text-slate-400">Neofetch</th>
+              <th class="py-3 sm:py-4 px-4 sm:px-6 font-semibold text-slate-400">btop</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60 font-mono text-xs">
+            {comparisonData.map((row) => (
+              <tr class="hover:bg-slate-900/30 transition-colors">
+                <td class="py-3 sm:py-4 px-4 sm:px-6 font-sans font-medium text-slate-300">
+                  {row.feature}
+                </td>
+                <td class="py-3 sm:py-4 px-4 sm:px-6 font-semibold text-cyan-300 bg-[#00ADD8]/5 border-x border-[#00ADD8]/20 whitespace-nowrap">
+                  {row.kv}
+                </td>
+                <td class="py-3 sm:py-4 px-4 sm:px-6 text-slate-400 whitespace-nowrap">
+                  {row.fastfetch}
+                </td>
+                <td class="py-3 sm:py-4 px-4 sm:px-6 text-slate-500 whitespace-nowrap">
+                  {row.neofetch}
+                </td>
+                <td class="py-3 sm:py-4 px-4 sm:px-6 text-slate-400 whitespace-nowrap">
+                  {row.btop}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Bottom Table Footnote -->
+      <div class="px-4 sm:px-6 py-3 bg-[#0a0e17]/80 border-t border-slate-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 text-[10px] sm:text-xs text-slate-400 font-mono">
+        <span>* Benchmarked via wall-clock timing across 1,000 cold invocations.</span>
+        <span class="text-cyan-400">Pure Go SQLite engine resolves packages in &lt;0.3ms</span>
+      </div>
+    </div>
+
+  </div>
+</section>

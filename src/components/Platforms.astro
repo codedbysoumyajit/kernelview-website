@@ -1,0 +1,174 @@
+---
+// Platforms.astro
+
+const platformCards = [
+  {
+    title: "Linux Ecosystem",
+    badge: "Sysfs /proc",
+    icon: `<svg class="w-6 h-6 text-[#00ADD8]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>`,
+    description: "Direct kernel `/proc` and sysfs parsing with zero shell subprocesses and instant SQLite package resolution.",
+    distros: [
+      "Fedora", "Arch Linux", "Ubuntu", "Debian",
+      "NixOS", "Alpine", "Void Linux", "Gentoo",
+      "openSUSE", "RHEL", "Pop!_OS", "Manjaro", "Mint"
+    ],
+    status: "1-Command Shell Installer",
+    roadmap: "COPR, AUR, and PPA planned"
+  },
+  {
+    title: "Apple macOS",
+    badge: "Sysctl / Metal",
+    icon: `<svg class="w-6 h-6 text-[#00ADD8]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>`,
+    description: "Native Mach kernel sysctl and Apple Metal unified memory telemetry without external tooling.",
+    features: [
+      "Apple Silicon (M1 / M2 / M3 / M4)",
+      "Intel Mac (x86_64)",
+      "Terminal, iTerm2, Warp, Alacritty"
+    ],
+    status: "1-Command Shell Installer",
+    roadmap: "Homebrew Tap planned"
+  },
+  {
+    title: "Microsoft Windows",
+    badge: "ConPTY / Win32",
+    icon: `<svg class="w-6 h-6 text-[#00ADD8]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6z" /></svg>`,
+    description: "Full ANSI 24-bit TrueColor and Virtual Terminal Sequences optimized for Windows Terminal & ConPTY.",
+    features: [
+      "Windows 11 & Windows 10",
+      "PowerShell 7 & 5.1 / CMD",
+      "Native x86_64 & ARM64 Binaries"
+    ],
+    status: "PowerShell irm Installer",
+    roadmap: "Winget & Scoop planned"
+  },
+  {
+    title: "BSD Systems",
+    badge: "KVM / sysctl",
+    icon: `<svg class="w-6 h-6 text-[#00ADD8]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" /></svg>`,
+    description: "Compile-time zero CGO support with direct KVM process queries and POSIX system metrics.",
+    features: [
+      "FreeBSD (Tier 1 Support)",
+      "OpenBSD (pledge / unveil)",
+      "NetBSD (pkgsrc compatible)"
+    ],
+    status: "1-Command Shell Installer",
+    roadmap: "Direct release archives"
+  }
+];
+
+const archTiers = [
+  { tier: "Tier 1", arch: "x86_64 / amd64", note: "Linux, macOS, Windows, BSD" },
+  { tier: "Tier 1", arch: "ARM64 / aarch64", note: "Linux, Apple Silicon, Windows on ARM" },
+  { tier: "Tier 2", arch: "RISC-V 64-bit", note: "Linux (VisionFive, StarFive)" },
+  { tier: "Tier 2", arch: "ARMv7 / 32-bit", note: "Raspberry Pi OS, Armbian" }
+];
+---
+
+<section id="platforms" class="py-16 sm:py-24 lg:py-28 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#00ADD8]/10 text-[#00ADD8] border border-[#00ADD8]/30 text-xs font-mono font-medium mb-3 sm:mb-4">
+        <span>// CROSS-PLATFORM SUPPORT</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+        Runs seamlessly anywhere. <br class="hidden sm:inline" />
+        <span class="text-gradient-go">From Raspberry Pi to Multi-Core Servers.</span>
+      </h2>
+      <p class="mt-3 text-slate-400 text-sm sm:text-base lg:text-lg">
+        KernelView adapts dynamically to native OS architectures without invoking external helper tools.
+      </p>
+    </div>
+
+    <!-- 4 Clean, Spacious Platform Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      {platformCards.map((card) => (
+        <div class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between relative group border border-slate-800 hover:border-[#00ADD8]/40 transition-all duration-300">
+          <div>
+            <!-- Top Header -->
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center group-hover:border-[#00ADD8]/50 transition-colors">
+                <Fragment set:html={card.icon} />
+              </div>
+              <span class="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-[#00ADD8]/10 text-[#00ADD8] border border-[#00ADD8]/20">
+                {card.badge}
+              </span>
+            </div>
+
+            <!-- Title & Description -->
+            <h3 class="text-lg font-bold text-white group-hover:text-cyan-200 transition-colors mb-2">
+              {card.title}
+            </h3>
+            <p class="text-xs text-slate-400 leading-relaxed mb-5">
+              {card.description}
+            </p>
+
+            <!-- Distros Pill Matrix or Features List -->
+            {card.distros ? (
+              <div class="mb-5">
+                <div class="text-[10px] font-mono uppercase tracking-wider text-slate-500 mb-2">Supported Distros</div>
+                <div class="flex flex-wrap gap-1.5">
+                  {card.distros.map((d) => (
+                    <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900/90 text-slate-300 border border-slate-800">
+                      {d}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div class="mb-5 space-y-2">
+                <div class="text-[10px] font-mono uppercase tracking-wider text-slate-500 mb-1">Architecture Highlights</div>
+                {card.features?.map((f) => (
+                  <div class="flex items-center gap-2 text-xs text-slate-300 font-medium">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#00ADD8] flex-shrink-0"></span>
+                    <span>{f}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <!-- Bottom Status Footer -->
+          <div class="pt-4 border-t border-slate-800/80">
+            <div class="flex items-center gap-1.5 text-xs font-mono font-semibold text-emerald-400">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>{card.status}</span>
+            </div>
+            <div class="text-[10px] font-mono text-slate-500 mt-1">
+              {card.roadmap}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Supported Architecture Tier Banner -->
+    <div class="rounded-2xl bg-[#0f1420]/80 border border-slate-800 p-6 backdrop-blur-md">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+        <div class="flex items-center gap-3.5">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#00ADD8]/20 to-blue-600/10 border border-[#00ADD8]/40 flex items-center justify-center text-[#00ADD8] font-mono font-bold text-sm flex-shrink-0">
+            GO
+          </div>
+          <div>
+            <h4 class="font-bold text-white text-sm">Static Multi-Architecture Releases</h4>
+            <p class="text-xs text-slate-400 mt-0.5">Automated GoReleaser cross-compiled binaries with stripped symbols.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:flex xl:flex-wrap items-center gap-3 w-full lg:w-auto">
+          {archTiers.map((a) => (
+            <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-xs font-mono">
+              <div class="flex items-center gap-2">
+                <span class="text-cyan-300 font-bold">{a.arch}</span>
+                <span class="text-[10px] px-1.5 py-0.2 rounded bg-slate-800 text-slate-400 border border-slate-700">{a.tier}</span>
+              </div>
+              <div class="text-[11px] text-slate-500 mt-1">{a.note}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

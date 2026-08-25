@@ -1,0 +1,21 @@
+{
+  "name": "kv-website",
+  "type": "module",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^6.0.0",
+    "astro": "^5.3.0",
+    "lucide-astro": "^0.501.0",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.2"
+  }
+}

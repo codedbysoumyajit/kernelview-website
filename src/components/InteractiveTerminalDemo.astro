@@ -1,0 +1,466 @@
+---
+// InteractiveTerminalDemo.astro
+
+// Exact data matching KernelView-Go output on Fedora Linux
+const fedoraAsciiLines = [
+  "             .',;::::;,'..",
+  "         .';:cccccccccccc:;,.",
+  "      .;cccccccccccccccccccccc;.",
+  "    .:cccccccccccccccccccccc:.",
+  "  .;ccccccccccccc;.:dddl:.;ccccccc;.",
+  " .:ccccccccccccc;OWMKOOXMWd;ccccccc:.",
+  ".:ccccccccccccc;KMMc;cc;xMMc;ccccccc:.",
+  ",cccccccccccccc;MMM.;cc;;WW:;cccccccc,",
+  ":cccccccccccccc;MMM.;cccccccccccccccc:",
+  ":ccccccc;oxOOOo;MMM000k.;cccccccccccc:",
+  "cccccc;0MMKxdd:;MMMkddc.;cccccccccccc;",
+  "ccccc;XMO';cccc;MMM.;cccccccccccccccc'",
+  "ccccc;MMo;ccccc;MMW.;ccccccccccccccc;",
+  "ccccc;0MNc.ccc.xMMd;ccccccccccccccc;",
+  "cccccc;dNMWXXXWM0:;cccccccccccccc:,",
+  "cccccccc;.:odl:.;cccccccccccccc:,.",
+  "ccccccccccccccccccccccccccccc:'.",
+  ":ccccccccccccccccccccccc:;,..",
+  " ':cccccccccccccccc::;,,."
+];
+
+const fetchSpecs = [
+  { key: "OS", value: "Fedora Linux 44 (KDE Plasma Desktop Edition)" },
+  { key: "Host", value: "VivoBook_ASUSLaptop X515MA_X515MA 1.0" },
+  { key: "Kernel", value: "Fedora 7.1.8-200.fc44.x86_64" },
+  { key: "Uptime", value: "25 mins" },
+  { key: "Packages", value: "Flatpak (3), RPM (2467)" },
+  { key: "Shell", value: "Bash 5.3.9" },
+  { key: "Resolution", value: "1366x768" },
+  { key: "DE", value: "KDE" },
+  { key: "WM", value: "KWin (X11)" },
+  { key: "Terminal", value: "Konsole" },
+  { key: "CPU", value: "Intel(R) Pentium(R) Silver N5030 CPU @ 1.10GHz" },
+  { key: "GPU", value: "Intel GeminiLake [UHD Graphics 605]" },
+  { key: "Memory", value: "1.8GB / 3.6GB (49%)" },
+  { key: "Swap", value: "0.4GB / 3.6GB (9.9%)" },
+  { key: "Disk", value: "16.8GB / 337.8GB (5%)" },
+  { key: "Local IP", value: "10.126.203.85" },
+  { key: "Locale", value: "en_US" },
+  { key: "Languages", value: "Go, Java, Node, Python" },
+  { key: "Open Ports", value: "53, 631, 1716, 5355, 37295, 40957" },
+  { key: "Temperature", value: "56.0 °C" },
+  { key: "Go Version", value: "go1.26.6-X:nodwarf5" }
+];
+
+const networkSpecs = [
+  { key: "Hostname", value: "fedora" },
+  { key: "Private IP", value: "10.126.203.85" },
+  { key: "MAC Address", value: "12:69:18:54:f6:78" },
+  { key: "I/O Counters", value: "wlo1 (Sent: 33.0 MB, Recv: 142.8 MB)" },
+  { key: "Proxy", value: "None" },
+  { key: "DNS Servers", value: "127.0.0.53" },
+  { key: "Ping (1.1.1.1)", value: "85.855 ms" }
+];
+
+const processList = [
+  { pid: "3658", name: "agy" },
+  { pid: "1504", name: "kwin_wayland" },
+  { pid: "4514", name: "chromium-browser" },
+  { pid: "4686", name: "kernelview" },
+  { pid: "2904", name: "chromium-browse" },
+  { pid: "3356", name: "kate" },
+  { pid: "3159", name: "chromium-browser" },
+  { pid: "2856", name: "chromium-browser" },
+  { pid: "1665", name: "plasmashell" },
+  { pid: "4482", name: "node" },
+  { pid: "65", name: "kswapd0" },
+  { pid: "2909", name: "chromium-browse" },
+  { pid: "72", name: "kworker/1:1-i915" },
+  { pid: "49", name: "kcompactd0" },
+  { pid: "3040", name: "chromium-browser" },
+  { pid: "4306", name: "kworker/u17:0" },
+  { pid: "4471", name: "pnpm" },
+  { pid: "4375", name: "konsole" }
+];
+
+const jsonRawOutput = `{
+  "OS": "Fedora Linux 44 (KDE Plasma Desktop Edition)",
+  "Host": "VivoBook_ASUSLaptop X515MA_X515MA 1.0",
+  "Kernel": "Fedora 7.1.8-200.fc44.x86_64",
+  "Uptime": "25 mins",
+  "Shell": "Bash 5.3.9",
+  "CPU": "Intel(R) Pentium(R) Silver N5030 CPU @ 1.10GHz",
+  "CoresThreads": "4/4",
+  "CPUSpeed": "2.79 GHz",
+  "CPUUsage": "0.0%",
+  "GPU": "Intel GeminiLake [UHD Graphics 605]",
+  "RAM": "1.8GB / 3.6GB (49%)",
+  "Disk": "16.8GB / 337.8GB (5%)",
+  "Swap": "0.4GB / 3.6GB (9.9%)",
+  "Hostname": "fedora",
+  "IPAddress": "10.126.203.85",
+  "OpenPorts": "53, 631, 1716, 5355, 37295, 40957",
+  "Locale": "en_US",
+  "Resolution": "1366x768",
+  "WindowManager": "KWin (X11)",
+  "DE": "KDE",
+  "Terminal": "Konsole",
+  "Packages": "Flatpak (3), RPM (2467)",
+  "Languages": "Go, Java, Node, Python",
+  "Go": "go1.26.6-X:nodwarf5",
+  "Virtualization": "kvm",
+  "Temperature": "56.0 °C"
+}`;
+
+const intelAscii = [
+  " ___ _   _ _____ _____ _     ",
+  "|_ _| \\ | |_   _| ____| |    ",
+  " | ||  \\| | | | |  _| | |    ",
+  " | || |\\  | | | | |___| |___ ",
+  "|___|_| \\_| |_| |_____|_____|"
+];
+
+const helpMenu = `╭────────────────────────────────────────────────────────╮
+│   KernelView Go - System Fetch & Live Dashboard        │
+│   Version: 1.3.0 (Detected: fedora)                    │
+╰────────────────────────────────────────────────────────╯
+
+USAGE:
+  kernelview [flags]
+
+DISPLAY MODES:
+  -l, --live         Start real-time TUI dashboard (interactive, multi-tab)
+  -p, --process      Display static list of running processes
+  -n, --network      Display detailed static network interfaces & stats
+  -g, --gpu          Display detailed static GPU & graphics API report
+  [default]          Display system fetch (fastfetch-like distro ASCII logo & specs)
+
+CONFIGURATION OPTIONS:
+  -f, --fast         Run system fetch in fast mode (skips slow subsystem checks)
+  --json             Output information as structured JSON
+  --no-color         Disable all ANSI color formatting
+
+INFO FLAGS:
+  -v, --version      Print version and build information
+  -h, --help         Print this aesthetic help menu
+
+TUI INTERACTIVE KEYS:
+  [1] Dashboard Tab   [2] Processes Tab   [3] Network Tab   [4] CPU Cores Tab   [Q] Quit
+
+EXAMPLES:
+  $ kernelview --live            # Open the live TUI dashboard
+  $ kernelview -p --json         # Fetch running processes in JSON format
+  $ kernelview -g                # Display detailed GPU and graphics API report
+  $ kernelview -f                # Fast system fetch with ASCII logo`;
+---
+
+<section id="demo" class="py-14 sm:py-20 lg:py-28 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-7 sm:mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#00ADD8]/10 text-[#00ADD8] border border-[#00ADD8]/30 text-xs font-mono font-medium mb-3 sm:mb-4">
+        <span>// INTERACTIVE CLI SANDBOX</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+        Test command flags. <br class="hidden sm:inline" />
+        <span class="text-gradient-go">Experience exact terminal output.</span>
+      </h2>
+      <p class="mt-3 text-slate-400 text-sm sm:text-base lg:text-lg">
+        Click any command flag below to render the authentic, pixel-accurate output directly from the KernelView binary.
+      </p>
+    </div>
+
+    <!-- Terminal Sandbox Container -->
+    <div class="max-w-5xl mx-auto">
+      
+      <!-- Command Button Selectors -->
+      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-6 px-1">
+        <button
+          type="button"
+          class="demo-cmd-btn px-3 sm:px-4 py-2 rounded-xl font-mono text-xs font-semibold bg-[#0f1420] text-cyan-300 border border-[#00ADD8] shadow-glow-sm transition-all active-demo min-h-[40px] active:scale-95"
+          data-output="fetch"
+        >
+          $ kernelview
+        </button>
+        <button
+          type="button"
+          class="demo-cmd-btn px-3 sm:px-4 py-2 rounded-xl font-mono text-xs font-semibold bg-[#0f1420]/70 text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700 transition-all min-h-[40px] active:scale-95"
+          data-output="json"
+        >
+          $ kernelview --json
+        </button>
+        <button
+          type="button"
+          class="demo-cmd-btn px-3 sm:px-4 py-2 rounded-xl font-mono text-xs font-semibold bg-[#0f1420]/70 text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700 transition-all min-h-[40px] active:scale-95"
+          data-output="gpu"
+        >
+          $ kernelview -g
+        </button>
+        <button
+          type="button"
+          class="demo-cmd-btn px-3 sm:px-4 py-2 rounded-xl font-mono text-xs font-semibold bg-[#0f1420]/70 text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700 transition-all min-h-[40px] active:scale-95"
+          data-output="net"
+        >
+          $ kernelview -n
+        </button>
+        <button
+          type="button"
+          class="demo-cmd-btn px-3 sm:px-4 py-2 rounded-xl font-mono text-xs font-semibold bg-[#0f1420]/70 text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700 transition-all min-h-[40px] active:scale-95"
+          data-output="proc"
+        >
+          $ kernelview -p
+        </button>
+        <button
+          type="button"
+          class="demo-cmd-btn px-3 sm:px-4 py-2 rounded-xl font-mono text-xs font-semibold bg-[#0f1420]/70 text-slate-400 border border-slate-800 hover:text-slate-200 hover:border-slate-700 transition-all min-h-[40px] active:scale-95"
+          data-output="help"
+        >
+          $ kernelview --help
+        </button>
+      </div>
+
+      <!-- Interactive Output Window -->
+      <div class="rounded-xl sm:rounded-2xl bg-[#0a0e17] border border-[#00ADD8]/40 shadow-terminal overflow-hidden">
+        
+        <!-- Header Bar -->
+        <div class="bg-[#0f1420] px-3.5 sm:px-4 py-2.5 sm:py-3 border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ff5f56]"></div>
+            <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ffbd2e]"></div>
+            <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#27c93f]"></div>
+            <span class="ml-2 font-mono text-xs text-slate-400">interactive-session — bash</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] sm:text-[11px] font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/50 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> ~42.8ms
+            </span>
+          </div>
+        </div>
+
+        <!-- Terminal Output Body -->
+        <div class="p-3.5 sm:p-6 font-mono text-[11px] sm:text-xs md:text-sm bg-[#080c14] text-slate-200 min-h-[380px] overflow-x-auto leading-relaxed overscroll-x-contain">
+          
+          <!-- Exact Fetch Output View -->
+          <div id="out-fetch" class="demo-pane block">
+            <div class="text-slate-400 mb-3 sm:mb-4 font-mono text-xs flex items-center gap-1.5 sm:gap-2 flex-wrap">
+              <span class="text-emerald-400">soumyajit@fedora</span>:<span class="text-blue-400">~/Projects/KernelView-Go</span>$ <span class="text-white font-bold">./kernelview</span>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-4 lg:gap-8 items-start">
+              <!-- Left: Fedora ASCII Logo in Soft Cyan-Blue (#38bdf8 / ANSI 75) -->
+              <div class="text-[#38bdf8] font-bold select-none whitespace-pre font-mono text-xs sm:text-sm leading-tight flex-shrink-0">
+{fedoraAsciiLines.join('\n')}
+              </div>
+
+              <!-- Right: System Specs with Bold Cyan Keys & Light Gray Values -->
+              <div class="flex-1 space-y-0.5 font-mono text-[11px] sm:text-xs md:text-sm text-slate-200">
+                <div class="font-bold text-[#38bdf8] mb-0.5">
+                  soumyajit@fedora
+                </div>
+                <div class="text-slate-500 select-none pb-1">----------------</div>
+                
+                {fetchSpecs.map((spec) => (
+                  <div class="flex items-baseline gap-1.5">
+                    <span class="text-[#38bdf8] font-bold min-w-[90px] sm:min-w-[95px] flex-shrink-0">{spec.key}:</span>
+                    <span class="text-slate-300">{spec.value}</span>
+                  </div>
+                ))}
+
+                <!-- Authentic 2-Row 8-Color ANSI Blocks -->
+                <div class="pt-4 sm:pt-5 space-y-1 select-none">
+                  <div class="flex gap-1.5">
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-zinc-950 border border-slate-700/50 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-red-600 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-green-600 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-yellow-500 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-[#00ADD8] rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-purple-600 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-cyan-400 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-slate-200 rounded-xs inline-block"></span>
+                  </div>
+                  <div class="flex gap-1.5">
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-zinc-600 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-red-400 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-green-400 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-yellow-300 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-blue-400 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-purple-400 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-cyan-300 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-white rounded-xs inline-block"></span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- JSON Output View -->
+          <div id="out-json" class="demo-pane hidden">
+            <div class="text-slate-400 mb-3 sm:mb-4 font-mono text-xs flex items-center gap-1.5 sm:gap-2 flex-wrap">
+              <span class="text-emerald-400">soumyajit@fedora</span>:<span class="text-blue-400">~/Projects/KernelView-Go</span>$ <span class="text-white font-bold">./kernelview --json</span>
+            </div>
+            <pre class="text-cyan-300 font-mono text-xs sm:text-sm whitespace-pre-wrap leading-relaxed"><code>{jsonRawOutput}</code></pre>
+          </div>
+
+          <!-- GPU Output View -->
+          <div id="out-gpu" class="demo-pane hidden">
+            <div class="text-slate-400 mb-3 sm:mb-4 font-mono text-xs flex items-center gap-1.5 sm:gap-2 flex-wrap">
+              <span class="text-emerald-400">soumyajit@fedora</span>:<span class="text-blue-400">~/Projects/KernelView-Go</span>$ <span class="text-white font-bold">./kernelview -g</span>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-4 lg:gap-8 items-start">
+              <div class="text-[#38bdf8] font-bold select-none whitespace-pre font-mono text-xs sm:text-sm leading-tight flex-shrink-0">
+{intelAscii.join('\n')}
+              </div>
+              <div class="flex-1 space-y-1 font-mono text-xs sm:text-sm text-slate-200">
+                <div class="font-bold text-[#38bdf8] mb-0.5">soumyajit@fedora</div>
+                <div class="text-slate-500 select-none pb-1">----------------</div>
+                <div class="flex items-baseline gap-1.5">
+                  <span class="text-[#38bdf8] font-bold min-w-[90px] sm:min-w-[95px]">GPU Model:</span>
+                  <span class="text-slate-300">Intel GeminiLake [UHD Graphics 605]</span>
+                </div>
+                <div class="flex items-baseline gap-1.5">
+                  <span class="text-[#38bdf8] font-bold min-w-[90px] sm:min-w-[95px]">Vendor:</span>
+                  <span class="text-slate-300">Intel</span>
+                </div>
+                <div class="flex items-baseline gap-1.5">
+                  <span class="text-[#38bdf8] font-bold min-w-[90px] sm:min-w-[95px]">Driver:</span>
+                  <span class="text-slate-300">i915</span>
+                </div>
+                
+                <!-- Color Blocks -->
+                <div class="pt-4 sm:pt-5 space-y-1 select-none">
+                  <div class="flex gap-1.5">
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-zinc-950 border border-slate-700/50 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-red-600 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-green-600 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-yellow-500 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-[#00ADD8] rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-purple-600 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-cyan-400 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-slate-200 rounded-xs inline-block"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Network Output View -->
+          <div id="out-net" class="demo-pane hidden">
+            <div class="text-slate-400 mb-3 sm:mb-4 font-mono text-xs flex items-center gap-1.5 sm:gap-2 flex-wrap">
+              <span class="text-emerald-400">soumyajit@fedora</span>:<span class="text-blue-400">~/Projects/KernelView-Go</span>$ <span class="text-white font-bold">./kernelview -n</span>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-4 lg:gap-8 items-start">
+              <div class="text-[#38bdf8] font-bold select-none whitespace-pre font-mono text-xs sm:text-sm leading-tight flex-shrink-0">
+{fedoraAsciiLines.join('\n')}
+              </div>
+              <div class="flex-1 space-y-0.5 font-mono text-xs sm:text-sm text-slate-200">
+                <div class="font-bold text-[#38bdf8] mb-0.5">soumyajit@fedora (Network)</div>
+                <div class="text-slate-500 select-none pb-1">--------------------------</div>
+                
+                {networkSpecs.map((spec) => (
+                  <div class="flex items-baseline gap-1.5">
+                    <span class="text-[#38bdf8] font-bold min-w-[100px] sm:min-w-[110px] flex-shrink-0">{spec.key}:</span>
+                    <span class="text-slate-300">{spec.value}</span>
+                  </div>
+                ))}
+
+                <!-- Color Blocks -->
+                <div class="pt-4 sm:pt-5 space-y-1 select-none">
+                  <div class="flex gap-1.5">
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-zinc-950 border border-slate-700/50 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-red-600 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-green-600 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-yellow-500 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-[#00ADD8] rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-purple-600 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-cyan-400 rounded-xs inline-block"></span>
+                    <span class="w-5 sm:w-6 h-3.5 sm:h-4 bg-slate-200 rounded-xs inline-block"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Process Output View -->
+          <div id="out-proc" class="demo-pane hidden">
+            <div class="text-slate-400 mb-3 sm:mb-4 font-mono text-xs flex items-center gap-1.5 sm:gap-2 flex-wrap">
+              <span class="text-emerald-400">soumyajit@fedora</span>:<span class="text-blue-400">~/Projects/KernelView-Go</span>$ <span class="text-white font-bold">./kernelview -p</span>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-4 lg:gap-8 items-start">
+              <div class="text-[#38bdf8] font-bold select-none whitespace-pre font-mono text-xs sm:text-sm leading-tight flex-shrink-0">
+{fedoraAsciiLines.join('\n')}
+              </div>
+              <div class="flex-1 space-y-0.5 font-mono text-xs sm:text-sm text-slate-200">
+                <div class="font-bold text-[#38bdf8] mb-0.5">soumyajit@fedora (Processes)</div>
+                <div class="text-slate-500 select-none pb-1">----------------------------</div>
+                <div class="flex items-center gap-4 text-[#38bdf8] font-bold text-xs">
+                  <span class="w-16">PID</span>
+                  <span>NAME</span>
+                </div>
+                <div class="text-slate-600 select-none pb-1">─────────────────────────────────────</div>
+                
+                {processList.map((proc) => (
+                  <div class="flex items-center gap-4 text-xs font-mono">
+                    <span class="w-16 text-cyan-400">{proc.pid}</span>
+                    <span class="text-slate-300">{proc.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Help Menu View -->
+          <div id="out-help" class="demo-pane hidden">
+            <div class="text-slate-400 mb-3 sm:mb-4 font-mono text-xs flex items-center gap-1.5 sm:gap-2 flex-wrap">
+              <span class="text-emerald-400">soumyajit@fedora</span>:<span class="text-blue-400">~/Projects/KernelView-Go</span>$ <span class="text-white font-bold">./kernelview --help</span>
+            </div>
+            <pre class="text-[#38bdf8] font-mono text-xs sm:text-sm whitespace-pre-wrap leading-relaxed"><code>{helpMenu}</code></pre>
+          </div>
+
+        </div>
+
+        <!-- Terminal Prompt Footer -->
+        <div class="bg-[#0f1420] px-3.5 sm:px-4 py-2.5 sm:py-3 border-t border-slate-800 flex items-center justify-between text-xs font-mono text-slate-400">
+          <div class="flex items-center gap-2 truncate">
+            <span class="text-[#00ADD8] font-bold">➜</span>
+            <span class="text-cyan-400">~</span>
+            <span class="text-slate-300 truncate">Run <kbd class="px-1.5 py-0.5 bg-slate-900 rounded border border-slate-700 text-cyan-300 font-semibold text-[10px] sm:text-xs">kernelview</kbd> in terminal</span>
+          </div>
+          <span class="text-slate-400 hidden sm:inline flex-shrink-0">go1.26.6 / go1.27.0 • x86_64</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const cmdButtons = document.querySelectorAll<HTMLButtonElement>('.demo-cmd-btn');
+  const demoPanes = document.querySelectorAll<HTMLDivElement>('.demo-pane');
+
+  cmdButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const outputType = btn.getAttribute('data-output');
+
+      cmdButtons.forEach((b) => {
+        b.classList.remove('bg-[#0f1420]', 'text-cyan-300', 'border-[#00ADD8]', 'shadow-glow-sm', 'active-demo');
+        b.classList.add('bg-[#0f1420]/70', 'text-slate-400', 'border-slate-800');
+      });
+
+      btn.classList.remove('bg-[#0f1420]/70', 'text-slate-400', 'border-slate-800');
+      btn.classList.add('bg-[#0f1420]', 'text-cyan-300', 'border-[#00ADD8]', 'shadow-glow-sm', 'active-demo');
+
+      demoPanes.forEach((pane) => {
+        if (pane.id === `out-${outputType}`) {
+          pane.classList.remove('hidden');
+          pane.classList.add('block');
+        } else {
+          pane.classList.remove('block');
+          pane.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
