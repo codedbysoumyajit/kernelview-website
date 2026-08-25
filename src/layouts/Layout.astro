@@ -43,11 +43,9 @@ const {
     />
   </head>
   <body class="bg-[#0a0e17] text-slate-200 antialiased selection:bg-[#00ADD8]/30 selection:text-cyan-300 min-h-screen relative">
-    <!-- Ambient Background Lighting -->
-    <div class="fixed inset-0 pointer-events-none z-0 bg-tech-grid opacity-25" aria-hidden="true"></div>
-    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[320px] sm:w-[600px] lg:w-[900px] h-[350px] sm:h-[500px] bg-radial-glow pointer-events-none z-0" aria-hidden="true"></div>
-    <div class="fixed top-[40%] right-[-100px] w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] rounded-full bg-blue-600/5 blur-[80px] sm:blur-[120px] pointer-events-none z-0" aria-hidden="true"></div>
-    <div class="fixed bottom-[10%] left-[-100px] w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] rounded-full bg-[#00ADD8]/5 blur-[80px] sm:blur-[120px] pointer-events-none z-0" aria-hidden="true"></div>
+    <!-- Ambient Background Lighting (Seamless full-bleed gradient) -->
+    <div class="fixed inset-0 pointer-events-none z-0 bg-tech-grid opacity-30" aria-hidden="true"></div>
+    <div class="fixed top-0 left-0 right-0 h-[450px] sm:h-[600px] bg-radial-glow pointer-events-none z-0" aria-hidden="true"></div>
 
     <div class="relative z-10 flex flex-col min-h-screen">
       <slot />

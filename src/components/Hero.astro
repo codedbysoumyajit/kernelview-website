@@ -2,14 +2,16 @@
 // Hero.astro
 ---
 
-<section class="relative pt-6 pb-14 sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-28 overflow-hidden">
-  <!-- Glowing Background Orbs -->
-  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[300px] sm:w-[650px] lg:w-[800px] h-[250px] sm:h-[300px] bg-gradient-to-tr from-[#00ADD8]/20 to-blue-600/10 rounded-full blur-[80px] sm:blur-[120px] pointer-events-none -z-10 animate-pulse-subtle" aria-hidden="true"></div>
+<section class="relative pt-8 pb-14 sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-28">
+  <!-- Seamless Background Glow -->
+  <div class="absolute inset-0 pointer-events-none -z-10 flex items-start justify-center overflow-visible" aria-hidden="true">
+    <div class="w-full max-w-4xl h-[380px] sm:h-[450px] bg-gradient-to-b from-[#00ADD8]/10 via-[#00ADD8]/4 to-transparent blur-3xl opacity-70"></div>
+  </div>
   
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
     
     <!-- Top Pill Badge -->
-    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0f1420]/90 border border-[#00ADD8]/30 shadow-glow-sm mb-5 sm:mb-8 backdrop-blur-md max-w-full">
+    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0f1420]/80 border border-[#00ADD8]/30 shadow-glow-sm mb-5 sm:mb-8 backdrop-blur-md max-w-full">
       <span class="flex h-2 w-2 relative flex-shrink-0">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ADD8] opacity-75"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 bg-[#00ADD8]"></span>
