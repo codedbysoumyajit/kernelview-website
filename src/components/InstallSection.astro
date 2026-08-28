@@ -14,6 +14,20 @@ kernelview --version`,
     description: "Detects your operating system, CPU architecture (x86_64, ARM64, Apple Silicon, BSD), downloads the release binary, verifies SHA256 checksums, and installs to /usr/local/bin."
   },
   {
+    id: "install-copr",
+    name: "Fedora / RHEL / openSUSE",
+    badge: "DNF COPR",
+    command: `# Enable Fedora COPR repository (Fedora, CentOS Stream, RHEL, openSUSE)
+sudo dnf copr enable codedbysoumyajit/kernelview
+
+# Install KernelView
+sudo dnf install kernelview
+
+# Verify installation
+kernelview --version`,
+    description: "Official Fedora Copr repository package for Fedora Linux, CentOS Stream, RHEL, and openSUSE. Automatically manages updates via DNF."
+  },
+  {
     id: "install-win",
     name: "Windows PowerShell",
     badge: "PowerShell",
@@ -29,12 +43,12 @@ kernelview --version`,
     name: "Pre-Built Releases",
     badge: "GitHub",
     command: `# Download directly from GitHub Releases:
-# • Linux (x86_64):        kernelview_1.3.1_linux_amd64.tar.gz
-# • Linux (ARM64):         kernelview_1.3.1_linux_arm64.tar.gz
-# • macOS (Apple Silicon): kernelview_1.3.1_darwin_arm64.tar.gz
-# • macOS (Intel):         kernelview_1.3.1_darwin_amd64.tar.gz
-# • Windows (x86_64):      kernelview_1.3.1_windows_amd64.zip
-# • Windows (ARM64):       kernelview_1.3.1_windows_arm64.zip
+# • Linux (x86_64):        kernelview_1.3.2_linux_amd64.tar.gz
+# • Linux (ARM64):         kernelview_1.3.2_linux_arm64.tar.gz
+# • macOS (Apple Silicon): kernelview_1.3.2_darwin_arm64.tar.gz
+# • macOS (Intel):         kernelview_1.3.2_darwin_amd64.tar.gz
+# • Windows (x86_64):      kernelview_1.3.2_windows_amd64.zip
+# • Windows (ARM64):       kernelview_1.3.2_windows_arm64.zip
 # • FreeBSD / OpenBSD / NetBSD release archives available
 
 # Extract and run anywhere with zero runtime dependencies`,
@@ -61,18 +75,20 @@ sudo mv kernelview /usr/local/bin/`,
   {
     id: "install-pkg",
     name: "Package Roadmap",
-    badge: "Planned",
+    badge: "Roadmap",
     command: `# Official Package Manager Distribution Status:
 # -------------------------------------------------------------
-# • Arch Linux (AUR):   Planned (AUR registration temporarily closed, will publish upon reopening)
-# • Fedora (DNF COPR):  Coming Very Soon
-# • Ubuntu / Debian:    APT PPA Coming Soon
-# • macOS Homebrew:     Custom Tap Planned
-# • Windows Winget:     Manifest Submission Planned
+# • Fedora / CentOS / RHEL / openSUSE: Available now via DNF COPR!
+# • Ubuntu / Debian (PPA):  Coming Very Soon
+# • Arch Linux (AUR):       Planned (AUR registration temporarily closed, will publish upon reopening)
+# • macOS Homebrew:         Custom Tap Planned
+# • Windows Winget:         Manifest Submission Planned
 
-# In the meantime, please use the 1-command installer:
+# In the meantime, please use DNF COPR or the 1-command installer:
+sudo dnf copr enable codedbysoumyajit/kernelview && sudo dnf install kernelview
+# or:
 curl -fsSL https://raw.githubusercontent.com/codedbysoumyajit/KernelView-Go/main/install.sh | sh`,
-    description: "Single-command installer is currently the official installation method; native distro repository packaging is actively in progress."
+    description: "DNF COPR is available for RPM-based distributions, and native Ubuntu/Debian PPA packaging is coming very soon."
   }
 ];
 ---
