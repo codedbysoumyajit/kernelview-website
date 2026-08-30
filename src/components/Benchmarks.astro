@@ -193,10 +193,15 @@ const comparisonData = [
 
       <!-- Bottom Table Footnote -->
       <div class="px-4 sm:px-6 py-3 bg-[#0a0e17]/80 border-t border-slate-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 text-[10px] sm:text-xs text-slate-400 font-mono">
-        <span>* Benchmarked via wall-clock timing across 1,000 cold invocations.</span>
+        <span>* Direct kernel memory parsing with zero subprocess spawns.</span>
         <span class="text-cyan-400">Pure Go SQLite engine resolves packages in &lt;0.3ms</span>
       </div>
     </div>
+
+    <!-- Benchmark Disclaimer Note -->
+    <p class="text-center text-[11px] sm:text-xs text-slate-400 font-mono mt-4 max-w-2xl mx-auto">
+      * Note: Benchmark figures are approximate estimates and not fully exhaustive tests. Actual results may differ from system to system based on hardware, kernel, and storage configurations.
+    </p>
 
   </div>
 </section>
